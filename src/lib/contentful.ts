@@ -4,6 +4,33 @@ const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID as string;
 const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN as string;
 const BASE_URL = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master`;
 
+export interface ContentfulRichText {
+  nodeType: string;
+  content: unknown[];
+  data: Record<string, unknown>;
+}
+
+export interface ContentfulInicio {
+  sys: { id: string };
+  fields: {
+    titulo: string;
+    subtitulo?: string;
+    foto?: ContentfulAsset;
+    nombre?: string;
+    cortaDescripcion?: ContentfulRichText;
+  };
+}
+
+export interface ContentfulSobreMi {
+  sys: { id: string };
+  fields: {
+    titulo?: string;
+    contenido?: ContentfulRichText;
+    foto?: ContentfulAsset;
+    descripcionDeFoto?: string;
+  };
+}
+
 export interface ContentfulAsset {
   sys: { id: string };
   fields: {
