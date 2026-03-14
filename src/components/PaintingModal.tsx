@@ -86,7 +86,7 @@ export default function PaintingModal({ painting, onClose }: PaintingModalProps)
             className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 pointer-events-none"
           >
             <div
-              className="bg-background rounded-sm shadow-modal w-full max-w-4xl max-h-[90vh] overflow-y-auto pointer-events-auto"
+              className="relative bg-background rounded-sm shadow-modal w-full max-w-4xl max-h-[90vh] overflow-y-auto pointer-events-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close button */}
