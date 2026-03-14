@@ -4,6 +4,33 @@ const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID as string;
 const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN as string;
 const BASE_URL = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master`;
 
+export interface ContentfulRichText {
+  nodeType: string;
+  content: unknown[];
+  data: Record<string, unknown>;
+}
+
+export interface ContentfulInicio {
+  sys: { id: string };
+  fields: {
+    titulo: string;
+    subtitulo?: string;
+    foto?: ContentfulAsset;
+    nombre?: string;
+    cortaDescripcion?: ContentfulRichText;
+  };
+}
+
+export interface ContentfulSobreMi {
+  sys: { id: string };
+  fields: {
+    titulo?: string;
+    contenido?: ContentfulRichText;
+    foto?: ContentfulAsset;
+    descripcionDeFoto?: string;
+  };
+}
+
 export interface ContentfulAsset {
   sys: { id: string };
   fields: {
@@ -113,4 +140,38 @@ export async function fetchCategories(): Promise<ContentfulCategory[]> {
 export function assetUrl(url: string): string {
   if (!url) return "";
   return url.startsWith("//") ? `https:${url}` : url;
+}
+
+function resolveAsset(
+  raw: ContentfulResponse<unknown>,
+  fotoRef: { sys: { id: string } } | undefined
+): ContentfulAsset | undefined {
+  if (!fotoRef) return undefined;
+  const assetMap = new Map<string, ContentfulAsset>();
+  raw.includes?.Asset?.forEach((a) => assetMap.set(a.sys.id, a));
+  return assetMap.get(fotoRef.sys.id);
+}
+
+export async function fetchInicio(): Promise<ContentfulInicio | null> {
+  const data = await contentfulFetch<ContentfulInicio>("inicio", { include: "1" });
+  const item = data.items[0];
+  if (!item) return null;
+  const fotoRef = item.fields.foto as unknown as { sys: { id: string } } | undefined;
+  const resolvedFoto = resolveAsset(data as ContentfulResponse<unknown>, fotoRef);
+  return {
+    ...item,
+    fields: { ...item.fields, foto: resolvedFoto ?? item.fields.foto },
+  };
+}
+
+export async function fetchSobreMi(): Promise<ContentfulSobreMi | null> {
+  const data = await contentfulFetch<ContentfulSobreMi>("sobreMi", { include: "1" });
+  const item = data.items[0];
+  if (!item) return null;
+  const fotoRef = item.fields.foto as unknown as { sys: { id: string } } | undefined;
+  const resolvedFoto = resolveAsset(data as ContentfulResponse<unknown>, fotoRef);
+  return {
+    ...item,
+    fields: { ...item.fields, foto: resolvedFoto ?? item.fields.foto },
+  };
 }
