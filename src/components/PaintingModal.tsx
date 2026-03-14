@@ -12,17 +12,17 @@ interface PaintingModalProps {
 
 const richTextOptions = {
   renderMark: {
-    [MARKS.BOLD]: (text: React.ReactNode) => <strong className="font-semibold">{text}</strong>,
-    [MARKS.ITALIC]: (text: React.ReactNode) => <em>{text}</em>,
+    [MARKS.BOLD]: (text: ReactNode) => <strong className="font-semibold">{text}</strong>,
+    [MARKS.ITALIC]: (text: ReactNode) => <em>{text}</em>,
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (_: unknown, children: React.ReactNode) => (
+    [BLOCKS.PARAGRAPH]: (_: unknown, children: ReactNode) => (
       <p className="mb-3 leading-relaxed">{children}</p>
     ),
-    [BLOCKS.HEADING_2]: (_: unknown, children: React.ReactNode) => (
+    [BLOCKS.HEADING_2]: (_: unknown, children: ReactNode) => (
       <h2 className="font-display text-2xl mb-2">{children}</h2>
     ),
-    [BLOCKS.HEADING_3]: (_: unknown, children: React.ReactNode) => (
+    [BLOCKS.HEADING_3]: (_: unknown, children: ReactNode) => (
       <h3 className="font-display text-xl mb-2">{children}</h3>
     ),
   },
