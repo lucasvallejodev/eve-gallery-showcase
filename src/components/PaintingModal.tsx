@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
