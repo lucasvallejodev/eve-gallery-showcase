@@ -175,7 +175,7 @@ export default function PaintingModal({ painting, onClose }: PaintingModalProps)
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 font-body text-sm tracking-wide px-5 py-2.5 bg-primary text-primary-foreground rounded-sm hover:opacity-90 transition-opacity duration-200 whitespace-nowrap"
                     >
-                      Inquire about this piece
+                      Pregunta por esta pieza
                       <ExternalLink size={14} />
                     </a>
                   )}

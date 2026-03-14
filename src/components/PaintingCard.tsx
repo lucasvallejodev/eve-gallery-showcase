@@ -32,7 +32,7 @@ export default function PaintingCard({ painting, onClick, index = 0 }: PaintingC
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-muted">
-            <span className="font-display text-muted-foreground text-lg italic">No image</span>
+            <span className="font-display text-muted-foreground text-lg italic">Sin Imagen</span>
           </div>
         )}
       </div>

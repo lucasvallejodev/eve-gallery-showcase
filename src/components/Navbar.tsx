@@ -4,10 +4,9 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/paintings", label: "Paintings" },
-  { to: "/contact", label: "Contact" },
+  { to: "/", label: "Inicio" },
+  { to: "/about", label: "Sobre mí" },
+  { to: "/paintings", label: "Pinturas" },
 ];
 
 export default function Navbar() {
@@ -39,7 +38,7 @@ export default function Navbar() {
             to="/"
             className="font-display text-xl tracking-wide text-foreground hover:text-primary transition-colors duration-200"
           >
-            Elena Voss
+            Evelyn Heredia
           </Link>
 
           {/* Desktop links */}
