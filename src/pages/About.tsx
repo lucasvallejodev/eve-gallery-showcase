@@ -11,7 +11,7 @@ export default function About() {
     ? assetUrl(data.fields.foto.fields.file.url)
     : portraitImg;
 
-  const altText = data?.fields?.descripcionDeFoto ?? "Evelyn Heredia";
+  const altText = data?.fields?.descripcionDeFoto ?? "Evelin Heredia";
 
   return (
     <main className="pt-16">

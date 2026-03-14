@@ -38,7 +38,7 @@ export default function Navbar() {
             to="/"
             className="font-display text-xl tracking-wide text-foreground hover:text-primary transition-colors duration-200"
           >
-            Evelyn Heredia
+            Evelin Heredia
           </Link>
 
           {/* Desktop links */}
